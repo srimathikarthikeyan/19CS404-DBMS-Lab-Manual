@@ -103,125 +103,170 @@ CREATE TABLE Table_Name (
 );
 ```
 
-**Question 1**
---
--- Paste Question 1 here
+## PROGRAMS
 
-```sql
--- Paste your SQL code below for Question 1
-```
+### Question 1
 
-**Output:**
+Create a table named Members with the following columns:
+    - MemberID as INTEGER
+    - MemberName as TEXT
+    - JoinDate as DATE
 
-![Output1](output.png)
-
-**Question 2**
----
--- Paste Question 2 here
-
-```sql
--- Paste your SQL code below for Question 2
-```
+    CCREATE TABLE Members(
+    MemberID INTEGER,
+    MemberName TEXT,
+    JoinDate DATE);
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/b1cfd9dd-c5ee-4168-89a6-3e2df6a1a344)
 
-**Question 3**
----
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
-```
 
-**Output:**
+### Question 2
 
-![Output3](output.png)
+Create a table named Products with the following columns:
+  - ProductID as INTEGER
+  - ProductName as TEXT
+  - Price as REAL
+  - Stock as INTEGER
 
-**Question 4**
----
--- Paste Question 4 here
-
-```sql
--- Paste your SQL code below for Question 4
-```
+        CREATE TABLE Products(
+        ProductID INTEGER,
+        ProductName TEXT,
+        Price REAL,
+        Stock INTEGER);
 
 **Output:**
 
-![Output4](output.png)
+![image](https://github.com/user-attachments/assets/83cdc4c3-e700-463f-af5a-ae2ef5c5f1ba)
 
-**Question 5**
----
--- Paste Question 5 here
 
-```sql
--- Paste your SQL code below for Question 5
-```
 
-**Output:**
+### Question 3
 
-![Output5](output.png)
+Create a table named Orders with the following constraints:
+- OrderID as INTEGER should be the primary key.
+- OrderDate as DATE should be not NULL.
+- CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
-**Question 6**
----
--- Paste Question 6 here
 
-```sql
--- Paste your SQL code below for Question 6
-```
+      CREATE TABLE Orders(
+      OrderID INT PRIMARY KEY,
+      OrderDate DATE NOT NULL,
+      CustomerID INT,
+      FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID));
 
 **Output:**
 
-![Output6](output.png)
+![image](https://github.com/user-attachments/assets/11fac081-a6a0-4a20-a28d-be0f361dc2ce)
 
-**Question 7**
----
--- Paste Question 7 here
 
-```sql
--- Paste your SQL code below for Question 7
-```
 
-**Output:**
+### Question 4
 
-![Output7](output.png)
+Write a SQL query to Add a new column mobilenumber as number in the Student_details table.
 
-**Question 8**
----
--- Paste Question 8 here
-
-```sql
--- Paste your SQL code below for Question 8
-```
+    ALTER TABLE Student_details ADD mobilenumber number;
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/2677d406-eb76-4cfa-94a8-f4e5beb53672)
 
-**Question 9**
----
--- Paste Question 9 here
 
-```sql
--- Paste your SQL code below for Question 9
-```
 
-**Output:**
+### Question 5
 
-![Output9](output.png)
+Write an SQL command can to add a column named email of type TEXT to the customers table
 
-**Question 10**
----
--- Paste Question 10 here
-
-```sql
--- Paste your SQL code below for Question 10
-```
+    ALTER TABLE Customers ADD email TEXT;
 
 **Output:**
 
-![Output10](output.png)
+![image](https://github.com/user-attachments/assets/75e626a1-6214-4dbf-a1eb-4843e95590f1)
+
+
+
+### Question 6
+
+Write a SQL query to Add a new ParentsNumber column  as number and Adhar_Number as Number in the Student_details table.
+
+    ALTER TABLE Student_details ADD ParentsNumber number;
+    ALTER TABLE STudent_details ADD Adhar_Number number;
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/434c518d-b5c6-404f-93a6-f709d9f30b90)
+
+
+
+### Question 7
+
+In the Cusomers table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+CustomerID  Name          Address      City        ZipCode
+----------  ------------  ----------   ----------  ----------
+306         Diana Prince  Themyscira
+307         Bruce Wayne   Wayne Manor  Gotham      10007
+308         Peter Parker  Queens                   11375
+
+    INSERT INTO Customers(CustomerID, Name, Address, City, ZipCode) VALUES(306, 'Diana Prince', 'Themyscira', NULL, NULL);
+    INSERT INTO Customers(CustomerID, Name, Address, City, ZipCode) VALUES(307, 'Bruce Wayne', 'Wayne Manor', 'Gotham', 10007);
+    INSERT INTO Customers(CustomerID, Name, Address, City, ZipCode) VALUES(308, 'Peter Parker', 'Queens', NULL, 11375);
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/48fb22a0-ace9-4fa5-88b8-2daae5d069dd)
+
+
+
+### Question 8
+
+Insert all products from Discontinued_products into Products.
+Table attributes are ProductID, ProductName, Price, Stock
+
+
+    INSERT INTO Products(ProductID, ProductName, Price, Stock) 
+    SELECT ProductID, ProductName, Price, Stock 
+    FROM Discontinued_products;
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/169e9eaa-376b-45f5-b4b3-03f0ef6d7aeb)
+
+
+
+### Question 9
+
+Insert the below data into the Student_details table, allowing the Subject and MARKS columns to take their default values.
+
+RollNo      Name          Gender      
+----------  ------------  ----------  
+204         Samuel Black  M          
+
+Note: The Subject and MARKS columns will use their default values.
+
+    INSERT INTO Student_details(RollNo, Name, Gender) VALUES(204, 'Samuel Black', 'M');
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/e7958b6a-c4b5-4c6c-9260-4aac79787ff1)
+
+
+
+### Question 10
+
+Insert all books from Out_of_print_books into Books
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
+
+    INSERT INTO Books(ISBN, Title, Author, Publisher, YearPublished)
+    SELECT ISBN, Title, Author, Publisher, YearPublished 
+    FROM Out_of_print_books
+
+**Output:**
+
+![image](https://github.com/user-attachments/assets/898d7a53-ddb1-4ea4-a2aa-2fa84362eb03)
+
 
 
 ## RESULT
