@@ -45,125 +45,257 @@ Used to retrieve records from a table.
 ```sql
 SELECT column1, column2 FROM table_name WHERE condition;
 ```
-**Question 1**
---
--- Paste Question 1 here
+## PROGRAM
 
-```sql
--- Paste your SQL code below for Question 1
-```
+### Question 1
+
+Write a SQL statement to change salary of employee to 8000 whose Employee ID is 105, if the existing salary is less than 5000.
+
+Employees table
+---------------
+employee_id
+first_name
+last_name
+email
+phone_number
+hire_date
+job_id
+salary
+commission_pct
+manager_id
+department_id
+
+    UPDATE Employees
+    SET salary = 8000
+    WHERE employee_id = 105
 
 **Output:**
 
-![Output1](output.png)
+![image](https://github.com/user-attachments/assets/9dfa4084-fa2f-4f5f-89b3-b975f772b0c4)
 
-**Question 2**
----
--- Paste Question 2 here
 
-```sql
--- Paste your SQL code below for Question 2
-```
+### Question 2
+
+Write a SQL statement to Change the category to 'Household' where product name contains 'Detergent' in the products table.
+
+Products Table 
+
+name          type       
+----------    ---------- 
+product_id     INT PRIMARY KEY        
+product_name   VARCHAR(10) 
+category       VARCHAR(50) 
+cost_price     DECIMAL(10) 
+sell_price     DECIMAL(10) 
+reorder_lvl    INT        
+quantity       INT        
+supplier_id    INT
+
+    UPDATE Products
+    SET category = 'Household'
+    WHERE product_name LIKE '%Detergent%'
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/3f24aae8-3e2b-4006-b6aa-5f8fd230d008)
+
 
 **Question 3**
----
--- Paste Question 3 here
 
-```sql
--- Paste your SQL code below for Question 3
-```
+For increase the selling price per unit by 3 for all products supplied by supplier ID 4 in the sales table.
+
+PRODUCTS TABLE
+
+name               type
+-----------------  ---------------
+product_id         INT
+product_name       VARCHAR(100)
+category           VARCHAR(50)
+cost_price         DECIMAL(10,2)
+sell_price         DECIMAL(10,2)
+reorder_lvl        INT
+quantity           INT
+supplier_id        INT
+
+SALES TABLE
+name               type
+-----------------  ---------------
+sale_id            INT
+sale_date          DATE
+product_id         INT
+quantity           INT
+sell_price         DECIMAL(10,2)
+total_sell_price   DECIMAL(10,2)
+
+    UPDATE SALES
+    SET sell_price = sell_price + 3
+    WHERE product_id IN(
+        SELECT product_id
+        FROM PRODUCTS
+        WHERE supplier_id = 4);
 
 **Output:**
 
-![Output3](output.png)
+![image](https://github.com/user-attachments/assets/ca92bfba-15e2-4d68-a691-6a48979ce274)
+
 
 **Question 4**
----
--- Paste Question 4 here
 
-```sql
--- Paste your SQL code below for Question 4
-```
+Write a SQL query to Delete customers from 'customer' table where 'GRADE' is greater than or equal to 2.
+
+ 
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
+
+
+    DELETE FROM customer 
+    WHERE GRADE >= 2
 
 **Output:**
 
-![Output4](output.png)
+![image](https://github.com/user-attachments/assets/64453fed-644f-4bc2-962f-63feef24afe5)
+
 
 **Question 5**
----
--- Paste Question 5 here
 
-```sql
--- Paste your SQL code below for Question 5
-```
+Write a SQL query to Delete customers whose 'GRADE' is greater than 2 and have a 'PAYMENT_AMT' less than the average 'PAYMENT_AMT' for all customers, or whose 'OUTSTANDING_AMT' is greater than 8000:
+
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
+
+
+    DELETE FROM Customer
+    WHERE (GRADE > 2 AND PAYMENT_AMT < (SELECT AVG(PAYMENT_AMT) FROM Customer))
+        OR OUTSTANDING_AMT > 8000
 
 **Output:**
 
-![Output5](output.png)
+![image](https://github.com/user-attachments/assets/fb8a3b32-13c9-40aa-951d-7fe1b09d0cd2)
+
 
 **Question 6**
----
--- Paste Question 6 here
 
-```sql
--- Paste your SQL code below for Question 6
-```
+Write a SQL query to Delete a Specific Surgery which was made on 28th Feb 2024.
+
+Sample table: Surgeries
+
+attributes: surgery_id, patient_id, surgeon_id, surgery_date
+
+    DELETE FROM Surgeries
+    WHERE surgery_date = '2024-02-28'
 
 **Output:**
 
-![Output6](output.png)
+![image](https://github.com/user-attachments/assets/779663fb-0e9e-4964-855b-0d8b6108c377)
+
 
 **Question 7**
----
--- Paste Question 7 here
 
-```sql
--- Paste your SQL code below for Question 7
-```
+Write a SQL query to Select all patients whose name starts with A.
+
+Table: Patients
+
+name                  type
+--------------------  ----------
+patient_id            INT
+first_name            VARCHAR(50)
+last_name             VARCHAR(50)
+date_of_birth         DATE
+admission_date        DATE
+discharge_date        DATE
+doctor_id             INT
+
+    SELECT * FROM Patients
+    WHERE first_name LIKE 'A%'
 
 **Output:**
 
-![Output7](output.png)
+![image](https://github.com/user-attachments/assets/9365d57c-2386-480f-aae5-28fb622a36fc)
+
 
 **Question 8**
----
--- Paste Question 8 here
 
-```sql
--- Paste your SQL code below for Question 8
-```
+Show the categoryName and description from the categories table sorted by categoryName.
+
+name                     type
+---------------       ---------------
+CategoryID           INTEGER
+CategoryName     VARCHAR(25)
+Description          VARCHAR(255)
+
+    SELECT categoryName, Description FROM categories
+    ORDER BY categoryName
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/d05ab02d-edc3-470c-a7d4-2cc5cd8dc1cf)
+
 
 **Question 9**
----
--- Paste Question 9 here
 
-```sql
--- Paste your SQL code below for Question 9
-```
+Write a SQL query to assess the performance of value2 as 'Poor', 'Average', or 'Excellent' based on whether it is less than 30, between 30 and 70, or greater than 70 in the Calculations table
+
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           id          INTEGER     0                       1
+1           value1      REAL        0                       0
+2           value2      REAL        0                       0
+3           base        INTEGER     0                       0
+4           exponent    INTEGER     0                       0
+5           number      REAL        0                       0
+6           decimal     REAL        0                       0
+
+
+    SELECT id, value2, 
+        CASE
+            WHEN value2 < 30 THEN 'Poor'
+            WHEN value2 BETWEEN 30 AND 70 THEN 'Average'
+            ELSE 'Excellent'
+        END AS performance
+    FROM Calculations
 
 **Output:**
 
-![Output9](output.png)
+![image](https://github.com/user-attachments/assets/9de93a81-1f91-4e8c-83bd-7cd162b8d8c7)
+
 
 **Question 10**
----
--- Paste Question 10 here
 
-```sql
--- Paste your SQL code below for Question 10
-```
+Write a SQL query to calculate the discounted price for products whose original price is between $50 and $150. Return product_id, original_price, discount_percentage, and discounted_price.
+
+Sample table: Products
+
+product_id | original_price | discount_percentage
+
+ ----------+----------------+--------------------- 
+
+101        | 50.00          | 0.10 
+
+102        | 125.00         | 0.15
+
+103        | 200.00         | 0.20
+
+
+    SELECT product_id, original_price, discount_percentage, original_price * (1 - discount_percentage) AS discounted_price 
+    FROM Products
+    WHERE original_price BETWEEN 50 AND 150
 
 **Output:**
 
-![Output10](output.png)
+![image](https://github.com/user-attachments/assets/06ea8e9c-35a5-40a8-abc1-5ea924765688)
+
 
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
